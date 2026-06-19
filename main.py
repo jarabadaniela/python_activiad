@@ -133,3 +133,21 @@ def eliminar_factura(id: int):
 @mi_app.get("/transacciones")
 def listar_transacciones():
     return transacciones
+
+@mi_app.get("/transacciones/{id}")
+def obtener_transaccion(id: int):
+
+    for transaccion in transacciones:
+        if transaccion.id == id:
+            return transaccion
+
+    raise HTTPException(404, "Transacción no encontrada")
+
+@mi_app.get("/transacciones/{id}")
+def obtener_transaccion(id: int):
+
+    for transaccion in transacciones:
+        if transaccion.id == id:
+            return transaccion
+
+    raise HTTPException(404, "Transacción no encontrada")
