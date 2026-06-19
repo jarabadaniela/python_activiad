@@ -161,3 +161,17 @@ def crear_transaccion(transaccion: Transaccion):
         "mensaje": "Transacción creada",
         "transaccion": transaccion
     }
+
+@mi_app.put("/transacciones/{id}")
+def actualizar_transaccion(id: int, datos: Transaccion):
+
+    for i, transaccion in enumerate(transacciones):
+        if transaccion.id == id:
+            transacciones[i] = datos
+
+            return {
+                "mensaje": "Transacción actualizada",
+                "transaccion": datos
+            }
+
+    raise HTTPException(404, "Transacción no encontrada")
