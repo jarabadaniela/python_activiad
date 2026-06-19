@@ -103,3 +103,17 @@ def crear_factura(factura: Factura):
         "factura": factura
     }
 
+@mi_app.put("/facturas/{id}")
+def actualizar_factura(id: int, datos: Factura):
+
+    for i, factura in enumerate(facturas):
+        if factura.id == id:
+            facturas[i] = datos
+
+            return {
+                "mensaje": "Factura actualizada",
+                "factura": datos
+            }
+
+    raise HTTPException(404, "Factura no encontrada")
+
