@@ -151,3 +151,13 @@ def obtener_transaccion(id: int):
             return transaccion
 
     raise HTTPException(404, "Transacción no encontrada")
+
+@mi_app.post("/transacciones")
+def crear_transaccion(transaccion: Transaccion):
+
+    transacciones.append(transaccion)
+
+    return {
+        "mensaje": "Transacción creada",
+        "transaccion": transaccion
+    }
