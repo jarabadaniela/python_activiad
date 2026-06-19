@@ -117,3 +117,15 @@ def actualizar_factura(id: int, datos: Factura):
 
     raise HTTPException(404, "Factura no encontrada")
 
+@mi_app.delete("/facturas/{id}")
+def eliminar_factura(id: int):
+
+    for factura in facturas:
+        if factura.id == id:
+            facturas.remove(factura)
+
+            return {
+                "mensaje": "Factura eliminada"
+            }
+
+    raise HTTPException(404, "Factura no encontrada")
