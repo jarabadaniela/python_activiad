@@ -92,3 +92,14 @@ def obtener_factura(id: int):
             return factura
 
     raise HTTPException(404, "Factura no encontrada")
+
+@mi_app.post("/facturas")
+def crear_factura(factura: Factura):
+
+    facturas.append(factura)
+
+    return {
+        "mensaje": "Factura creada",
+        "factura": factura
+    }
+
