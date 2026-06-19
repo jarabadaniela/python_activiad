@@ -80,3 +80,6 @@ def eliminar_cliente(id: int):
 
     raise HTTPException(404, "Cliente no encontrado")
 
+@mi_app.get("/facturas")
+def listar_facturas():
+    return facturas
