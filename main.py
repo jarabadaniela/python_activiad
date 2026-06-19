@@ -83,3 +83,12 @@ def eliminar_cliente(id: int):
 @mi_app.get("/facturas")
 def listar_facturas():
     return facturas
+
+@mi_app.get("/facturas/{id}")
+def obtener_factura(id: int):
+
+    for factura in facturas:
+        if factura.id == id:
+            return factura
+
+    raise HTTPException(404, "Factura no encontrada")
