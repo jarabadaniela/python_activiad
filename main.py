@@ -35,3 +35,12 @@ class Transaccion(BaseModel):
     @app.get("/clientes")
     def listar_clientes():
      return clientes
+
+@app.get("/clientes/{id}")
+def obtener_cliente(id: int):
+    for cliente in clientes:
+        if cliente.id == id:
+            return cliente
+
+    raise HTTPException(404, "Cliente no encontrado")
+
