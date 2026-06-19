@@ -31,3 +31,7 @@ class Transaccion(BaseModel):
     vr_unitario: float
     cantidad: int
     factura_id: int
+    
+    @app.get("/clientes")
+    def listar_clientes():
+     return clientes
