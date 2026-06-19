@@ -129,3 +129,7 @@ def eliminar_factura(id: int):
             }
 
     raise HTTPException(404, "Factura no encontrada")
+
+@mi_app.get("/transacciones")
+def listar_transacciones():
+    return transacciones
