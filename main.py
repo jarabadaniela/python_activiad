@@ -66,3 +66,17 @@ def actualizar_cliente(id: int, datos: Cliente):
             }
 
     raise HTTPException(404, "Cliente no encontrado")
+
+@mi_app.delete("/clientes/{id}")
+def eliminar_cliente(id: int):
+
+    for cliente in clientes:
+        if cliente.id == id:
+            clientes.remove(cliente)
+
+            return {
+                "mensaje": "Cliente eliminado"
+            }
+
+    raise HTTPException(404, "Cliente no encontrado")
+
