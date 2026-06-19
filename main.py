@@ -36,7 +36,7 @@ class Transaccion(BaseModel):
     def listar_clientes():
      return clientes
 
-@app.get("/clientes/{id}")
+@mi_app.get("/clientes/{id}")
 def obtener_cliente(id: int):
     for cliente in clientes:
         if cliente.id == id:
@@ -44,3 +44,11 @@ def obtener_cliente(id: int):
 
     raise HTTPException(404, "Cliente no encontrado")
 
+@mi_app.post("/clientes")
+def crear_cliente(cliente: Cliente):
+    clientes.append(cliente)
+
+    return {
+        "mensaje": "Cliente creado",
+        "cliente": cliente
+    }
