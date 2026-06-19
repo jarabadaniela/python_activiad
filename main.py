@@ -175,3 +175,16 @@ def actualizar_transaccion(id: int, datos: Transaccion):
             }
 
     raise HTTPException(404, "Transacción no encontrada")
+
+@mi_app.delete("/transacciones/{id}")
+def eliminar_transaccion(id: int):
+
+    for transaccion in transacciones:
+        if transaccion.id == id:
+            transacciones.remove(transaccion)
+
+            return {
+                "mensaje": "Transacción eliminada"
+            }
+
+    raise HTTPException(404, "Transacción no encontrada")
