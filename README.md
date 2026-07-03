@@ -14,7 +14,7 @@ Luego, esta carpeta fue abierta desde Visual Studio Code para empezar a trabajar
 
 Dentro de Visual Studio Code se utilizó la terminal integrada para crear un entorno virtual ejecutando el siguiente comando:
 
-py -m venv yober
+py -m venv dani
 
 Este comando genera un entorno independiente llamado `Dani`, el cual facilita la administración de librerías y paquetes sin alterar la configuración principal de Python.
 
@@ -22,7 +22,7 @@ Este comando genera un entorno independiente llamado `Dani`, el cual facilita la
 
 Después de crear el entorno virtual, se procedió a habilitarlo mediante el siguiente comando:
 
-.\yober\Scripts\activate
+.\dani\Scripts\activate
 
 Al activarse correctamente, el nombre `(Dani)` aparece al inicio de la terminal, indicando que el entorno virtual ya está en uso.
 
