@@ -3,6 +3,7 @@ from ..modelos.clientes import cliente, clientecrear, clienteeditar
 from ..listas import lista_clientes
 from ..conexion_bd import Sesion_dependencia
 from sqlmodel import select
+from ..modelos.factura import Factura
 rutas_clientes = APIRouter () 
 
 #lista_clientes: list [cliente] = []
@@ -58,13 +59,20 @@ async def editar_cliente(cliente_id: int, datos_cliente: clienteeditar, mi_sesio
 # endpoint eliminar cliente
 @rutas_clientes.delete("/clientes/{cliente_id}", response_model=cliente)
 async def eliminar_cliente(cliente_id: int, mi_sesion: Sesion_dependencia):
-    cliente_bd = mi_sesion.get(cliente, cliente_id) 
+    cliente_bd = mi_sesion.get(cliente, cliente_id)
     if not cliente_bd:
         raise HTTPException(
-            status_code=status. HTTP_400_BAD_REQUEST,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"El cliente con id {cliente_id}, no existe."
-        )   
+        )
+    facturas_cliente = mi_sesion.exec(
+        select(Factura).where(Factura.cliente_id == cliente_id)
+    ).all()
+    if facturas_cliente:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"No se puede eliminar el cliente con id {cliente_id} porque tiene facturas asociadas."
+        )
     mi_sesion.delete(cliente_bd)
-    mi_sesion.commit ()
-    #retornar un mensaje, debe quitar el responde_model 
+    mi_sesion.commit()
     return cliente_bd
